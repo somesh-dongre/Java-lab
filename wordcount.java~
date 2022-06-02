@@ -1,0 +1,46 @@
+import java.io.*;
+
+class Wordcount
+{
+	public static void main(String args[])throws IOException
+	{
+		String filepath=args[0];
+		File f=new File(filepath);
+	
+		int nolines=0;
+		int nochars=0;
+		int nowords=0;
+
+		if(f.isDirectory())
+			System.out.println("Invalid argument.. Please enter file name");
+
+		else if(f.isFile())
+		{
+			BufferedReader br=new BufferedReader(new InputStreamReader(System.in));		
+			String words[]={};
+			String line;
+
+			while((line=br.readLine())!=null)
+			{
+				nolines++;
+				nochars += line.length();
+
+				if(!line.isEmpty())
+				{
+					words=line.trim().split(" ");
+					nowords +=  words.length;
+				}
+			}
+
+			System.out.println("Total no. of lines: "+nolines);
+			System.out.println("Total no. of lines: "+nochars);
+			System.out.println("Total no. of lines: "+nowords);
+		}
+		else
+		{
+			System.out.println("Invalid file path..");
+		}
+	}
+}
+			
+			

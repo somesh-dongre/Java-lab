@@ -1,0 +1,85 @@
+import java.awt.*;
+import javax.swing.*;
+
+
+public class Font extends JFrame{
+	JLabel l1,l2,l3;
+	JComboBox<String> fontFam;
+	String[] fonts;
+	JRadioButton rb1,rb2;
+	ButtonGroup g1;
+	JList<String> list;
+	DefaultListModel<String> listModel;
+	JTextFeild t1;
+	JButton b1,b2;
+	Box verticalBox;
+	JScrollPane scroll;
+
+
+	Font(){
+		
+		l1 = new JLabel("Font");
+		
+		l2 =  new JLabel("Font Style");
+		
+		l3 = new JLabel("Size");
+		b1 = new JButton("Apply");
+		b2 = new JButton("Exit");
+		t1 = new JTextField("Hello Everyone");
+		fonts = GraphicsEnvironment.getLocalGraphicsEnvironment().getAvailableFontFamilyNames();
+		fontFam = new JComboBox<String>(fonts);		
+		rb1 = new JRadioButton("Bold");
+		rb2 = new JRadioButton("Italic");
+		
+		g1 = new ButtonGroup();
+		g1.add(rb1);
+		g1.add(rb2);
+
+		listModel = new DefaultListModel<String>();
+		String[] fontSizes = new String[50];
+
+		for(int i=0;i<=50;i++){
+			listModel.addElement(String.valueOf(i+1));
+		}
+
+		list = new JList<STring>(listModel);
+		scroll = new JScrollPane(list);
+		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+
+
+		Box verticalBox = Box.createVerticalBox();
+		VerticalBox.add(rb1);
+		VerticalBox.add(rb2);
+		
+		setSizes(
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		
+
+		
+
+	
+	
+
+
+
+
+
+
+
+
+

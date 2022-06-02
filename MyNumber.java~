@@ -1,0 +1,45 @@
+class MyNumber
+{
+	private int num;
+	
+	MyNumber()
+	{
+		num=0;
+	}
+	
+	MyNumber(num)
+	{
+		this.num=num;
+	}
+	
+	void check(n)
+	{
+		if(n>0)
+			System.out.println("Zero");
+		else if(n<0)
+			System.out.println("Negative");
+		else
+			System.out.println("Positive");
+		
+		if(n%2==0)
+			System.out.println("Even");
+		else
+			System.out.println("Odd");
+	}
+}
+
+class Numdemo
+{
+	public static void main(String args[])
+	{
+		MyNumber number;		
+		for(int i<0;i<args.length;i++)
+		{
+			int n=Integer.parseInt(args[i]);
+			number=new MyNumber(n);
+			number.check(n);
+		}
+	}
+}
+
+	

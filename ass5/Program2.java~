@@ -1,0 +1,63 @@
+import java.io.*;
+
+public class Program2
+{
+
+	public static void main(String args[])
+	{
+		int data;
+		FileInputStream fin = null;
+		int words = 0,lines = 0, characters=0;
+			try
+			{
+				fin = new FileInputStream(args[0]);
+			}
+			catch (FileNotFoundException fnfe)
+			{
+				System.out.println(fnfe);
+			}
+
+			try
+			{
+				do
+				{
+					data = fin.read();
+					if(data != -1)
+					{
+						if((char)data == '\n')
+						{
+							lines +=1;
+							words  +=1;
+						}		
+						if((char)data == ' ')
+						{
+							words  +=1;
+						}
+						characters +=1;
+					}
+				}while(data!=-1);
+	
+				System.out.println("Number of characters : "+characters);
+				System.out.println("Number of words : "+words);
+				System.out.println("Number of Lines : "+lines);
+
+			}
+	
+			catch (IOException ioe)
+			{
+				System.out.println(ioe);
+
+			}
+
+
+			try
+			{
+				fin.close();
+			}
+
+			catch
+			{
+				System.out.println(ioe);
+			}
+	}
+}

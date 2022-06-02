@@ -1,0 +1,28 @@
+public class SilverCardCustomer implements CreditCardInterface
+{
+	String name,catdnumber;
+	double creditamount=0,creditlimit=50000;
+	
+	void viewCreditamount()
+	{
+		
+	}
+	
+	
+	void useCard()
+	{
+		
+	}
+
+	void payCredit()
+	{
+	
+	}
+	
+	void increaseLimit()	
+	{
+	
+	]
+}
+
+	
