@@ -1,0 +1,8 @@
+import java.io.*;
+
+interface CCard
+{
+	public void viewAmt();
+	public void useCard();	
+	public void payCredit();
+}

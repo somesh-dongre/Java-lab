@@ -1,0 +1,203 @@
+import java.io.*;
+
+public interface CCard
+{
+	public void viewAmt();
+	public void useCard() throws IOException;	
+ 	public void payCredit() throws IOException;
+}
+	
+class SilverCard implements CCard
+{
+	BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+	
+	String name;
+	String cno;
+	
+	double cAmt,payAmt;
+	double climit;
+	int cnt;
+
+	SilverCard()
+	{
+		cAmt=0;
+		climit=50000;	
+	}
+
+	public void accept() throws IOException
+	{
+		System.out.println("\n Enter Name : ");
+		name = br.readLine();
+		System.out.println("\n Enter Card Number : ");
+		while(true)
+		{		
+			cno = br.readLine();
+			if(cno.length()==16)
+				break;
+			else
+				System.out.println("Invalid Card Number !! ");
+				System.out.println("\n Enter Valid Card Number : ");
+			
+		}
+		
+		System.out.println("Enter Credit Amount : ");
+		while(true)
+		{
+			cAmt = Double.parseDouble(br.readLine());
+			if(cAmt>0)
+				break;
+			else
+				System.out.println("Invalid Amount !!");
+				System.out.println("\n Enter Valid Credit Amount : ");
+			
+		}	
+	}
+	public void viewAmt()
+	{
+		System.out.println("Your Credit Amount is : "+cAmt);
+	}
+	
+	public void payCredit() 
+	{
+		double amount;
+		System.out.println("Enter amount : ");
+		while(true)
+		{
+			amount = Double.parseDouble(br.readLine());
+			if(amount<cAmt)
+			{
+				cAmt = cAmt - amount;
+				System.out.println("Paid Successfully !!!");
+				viewAmt();	
+			}
+			else
+			{
+				System.out.println("\n Amount is more than credit Amount!!");
+				System.out.println("\n Enter Valid Credit Amount : ");
+			}		
+		}
+	}
+
+	public void useCard()
+	{
+		System.out.println("Enter Paying Amount : ");
+		while(true)
+		{
+			payAmt = Double.parseDouble(br.readLine());
+			if(payAmt<climit)
+			{
+				cAmt = cAmt + payAmt;
+				System.out.println("Amount Paid !!");
+				viewAmt();
+			}
+			else
+			{
+				System.out.println("Exceeding Credit Limit !!");
+				System.out.println("\n Enter Valid Paying Amount : ");
+			}
+		}
+	}
+}
+
+class GoldCard extends SilverCard
+{
+	public int cnt;
+	double amount;
+
+	GoldCard()
+	{
+		climit=100000;
+	}
+	
+	public void inlimit() throws IOException
+	{
+		cnt++;
+		if(cnt<4)
+		{
+			System.out.println("Enter amount to increase : ");
+			while(true)
+			{
+				amount = Double.parseDouble(br.readLine());
+				if(amount<=5000)
+				{
+					climit = climit + amount;
+					System.out.println("Credit Limit is increased !!");
+					viewAmt();
+				}
+				else
+				{
+					System.out.println("Can't increase credit limit more than 5000 at a time !!");
+					System.out.println("\n Enter Valid Amount : ");					
+				}
+			}
+		}
+		else
+			System.out.println("Can't increase limit more than 3 times !!!");	
+
+	}
+
+}
+
+class MainCredit
+{
+	public static void main(String args[]) throws IOException
+	{
+		int ch;
+		
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		
+			
+		System.out.println("Enter the details for silver card : ");
+		
+		SilverCard s = new SilverCard();
+		s.accept();
+		
+		System.out.println("Enter the details for Gold card : ");
+		
+		GoldCard g = new GoldCard();
+		g.accept();
+
+		do
+		{
+			System.out.println("1 : Use Silver Card");
+			System.out.println("2 : Pay Credit for Silver Card");
+			System.out.println("3 : Use Gold Card");
+			System.out.println("4 : Pay Credit for Gold Card");
+			System.out.println("5 : Increase Limit for Gold");	
+
+			System.out.println("Enter your choice : ");
+			ch = Integer.parseInt(br.readLine());
+			switch(ch)
+			{
+				case 1:
+					s = new SilverCard();
+					s.useCard();
+				break;
+
+				case 2:
+					s = new SilverCard();
+					s.payCredit();
+				break;
+
+				case 3:
+					g = new GoldCard();
+					g.useCard();
+				break;
+
+				case 4:
+					g = new GoldCard();
+					g.payCredit();
+				break;
+
+				case 5:
+					g = new GoldCard();
+					g.inlimit();
+				break;
+				
+				case 0:
+					break;
+			}
+		}while(ch!=0);
+		
+	}
+}

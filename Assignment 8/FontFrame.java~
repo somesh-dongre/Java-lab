@@ -1,0 +1,96 @@
+import java.awt.*;
+import javax.swing.*;
+import java.awt.event.*;
+	
+class FontFrame extends JFrame implements ItemListener
+	
+{
+	JPanel jp1,jp2,jp3,jp4;
+	JTextField jtf;
+	JLabel jl1,jl2,jl3;
+	JComboBox jcb1,jcb2;
+	JRadioButton jc1,jc2;
+	String fname[];
+
+	FontFrame()
+	{
+		setBounds(100,100,800,800);
+		setLayout(new BorderLayout());
+		fname = GraphicsEnvironment.getLocalGraphicsEnvironment().getAvailableFontFamilyNames();
+		jp1 = new JPanel();
+		jp1.setBounds(50,50,50,30);
+		
+		jp3 = new JPanel();		
+		jp3.setLayout(new GridLayout(4,1));		
+		
+		jl1 = new JLabel("Font");
+		jl1.setBounds();
+		jp3.add(jl1);
+		
+		jcb1 = new JComboBox(fname);
+		jcb1.addItemListener(this);
+		
+		jp3.add(jcb1);
+		jl2 = new JLabel("Size");
+		
+		jp3.add(jl2);
+
+		jp3.setLayout(new FlowLayout());
+		JScrollPane sp = new JScrollPane();
+		jp3.add(sp);
+
+		jcb2 = new JComboBox();
+		jcb2.addItem("8");
+		jcb2.addItem("9");
+		jcb2.addItem("10");
+		jcb2.addItem("12");
+		jcb2.addItem("14");
+		jcb2.addItemListener(this);
+	
+		jp3.add(jcb2);
+		jp1.add(jp3);
+	
+		jp4 = new JPanel();
+			jp4.setLayout(new GridLayout(4,1));
+			jl3 = new JLabel("Style");
+			jp4.add(jl3);
+			jc1 = new JRadioButton("BOLD");
+			jc1.addItemListener(this);
+			jp4.add(jc1);
+			jc2 = new JRadioButton("ITALIC");
+			jc2.addItemListener(this);
+			jp4.add(jc2);
+			jp1.add(jp4);
+	
+			add(jp1,BorderLayout.CENTER);
+		
+			jp2 = new JPanel();
+			jp2.setLayout(new GridLayout(1,1));
+			jtf = new JTextField(20);
+			jp2.add(jtf);
+			add(jp2,BorderLayout.SOUTH);
+			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			setVisible(true);
+			pack();			
+	}
+
+	public void itemStateChanged(ItemEvent ie)
+{
+	String fname = (String)jcb1.getSelectedItem();
+	int fsize = Integer.parseInt((String)jcb2.getSelectedItem());
+	
+	Font f;
+	f = new Font(fname,Font.PLAIN,fsize);
+	
+	if(jc1.isSelected()&&jc2.isSelected())
+		f =  new Font(fname,Font.BOLD|Font.ITALIC,fsize);	
+	else if(jc2.isSelected())
+		f = new Font(fname,Font.ITALIC,fsize);
+	jtf.setFont(f);
+}
+
+public static void main(String args[])
+{
+	new FontFrame();
+}	
+}

@@ -1,0 +1,44 @@
+import java.io.*;
+
+public class extFilter implements FilenameFilter
+{
+	String ext;
+
+public extFilter(String e)
+	{
+	ext = e;	
+	}
+
+	public boolean accept(File dir,String name)
+	{
+		return name.endsWith(ext);
+	}
+}
+
+class isDict
+{
+	public static void main(String args[])
+	{
+	File fname = new File(args[0]);
+	String extension = ".txt";
+
+	if(fname.isDirectory())
+	{
+	FilenameFilter filt = new FilenameFilter(extension);
+	
+	String[] file_list = fname.list();
+	String[] txt_file = fname.list(filt);
+
+	System.out.println("Total files present in Directory : "+file_list.length);
+
+	System.out.println("\n Content of the given directory : ");
+
+	for(String f : file_list)
+	{
+		System.out.println(f);	
+	}
+	}
+		
+	}
+	
+}

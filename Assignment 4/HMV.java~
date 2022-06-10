@@ -1,0 +1,26 @@
+import java.io.*;
+
+class HMV extends Vehicle
+{
+	private float capacity;
+	
+	public void accept() throws IOException
+	{
+		super.accept();	
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+	
+		System.out.println(" Enter Capacity : ");
+
+		capacity = Float.parseFloat(br.readLine());		
+
+	}
+
+public void display()
+	{
+		super.display();
+		System.out.println("Capacity is : "+capacity);
+
+	}
+
+}
+	
